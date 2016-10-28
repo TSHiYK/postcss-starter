@@ -11,7 +11,7 @@ module.exports = {
     port: 8080
   },
   resolve: {
-    extensions: ['', '.js', '.ts', '.css', '.pcss']
+    extensions: ['', '.js', '.ts', '.css']
   },
   module: {
     loaders: [
@@ -25,12 +25,27 @@ module.exports = {
       },
     ]
   },
-  postcss: function () {
+  postcss: function (webpack) {
     return [
-      require('precss')({ /* ...options */ }),
-      require('autoprefixer')({
-        browsers: ['last 3 versions', 'ie 9', 'ios 6', 'android 4.4']
-      })
+      require('postcss-import')({addDependencyTo: webpack}),
+      require('postcss-cssnext')({
+        features: {
+          customProperties: {
+            variables: {
+              font: "-apple-system, Helvetica, 'ヒラギノ角ゴ ProN W3', 'Hiragino Kaku Gothic ProN', '游ゴシック', 'メイリオ', Meiryo, 'Lucida Grande', sans-serif",
+              fontColor: 'red',
+              bgColor: "#fff",
+              mainColor: "#fff",
+              subColor: "#fff",
+              accentColor: "#fff"
+            }
+          },
+          autoprefixer: {
+            browsers: ['last 3 versions', 'ie 9', 'ios 6', 'android 4.4']
+          }
+        }
+      }),
+      require('precss')({ /* ...options */ })
     ];
   }
 }
