@@ -1,1 +1,1 @@
-import './style.pcss';
+import './style.css';

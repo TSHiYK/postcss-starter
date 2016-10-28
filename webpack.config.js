@@ -20,7 +20,7 @@ module.exports = {
           loaders: ['awesome-typescript-loader']
       },
       {
-        test: /\.pcss$/,
+        test: /\.css$/,
         loaders: ['style-loader', 'css-loader?importLoaders=1', 'postcss-loader']
       },
     ]
