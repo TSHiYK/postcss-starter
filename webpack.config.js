@@ -28,6 +28,7 @@ module.exports = {
   postcss: function (webpack) {
     return [
       require('postcss-import')({addDependencyTo: webpack}),
+      require('postcss-url')({}),
       require('postcss-cssnext')({
         features: {
           customProperties: {
@@ -45,7 +46,9 @@ module.exports = {
           }
         }
       }),
-      require('precss')({ /* ...options */ })
+      require("postcss-browser-reporter")(),
+      require("postcss-reporter")(),
+      require('precss')({})
     ];
   }
 }
